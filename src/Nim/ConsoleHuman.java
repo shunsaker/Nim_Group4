@@ -2,11 +2,11 @@ package Nim;
 
 import java.util.Scanner;
 
-public class Human extends Player{
+public class ConsoleHuman extends Player{
 	private Scanner scan = new Scanner(System.in);
 	private final int MAX_ROW = 7;
 	
-	public Human(String name) {
+	public ConsoleHuman(String name) {
 		super(name);
 	}
 	

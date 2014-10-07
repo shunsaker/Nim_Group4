@@ -7,11 +7,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class KnowledgeMap implements Serializable{
-	private static final String SAVE_PATH = "knowledgeMap.ser";
+	private static final String SAVE_PATH = "/knowledgeMap.ser";
 	private static final String PERFECT_PATH = "perfectAI.ser";
 	private static final long serialVersionUID = 1;
 	private static boolean allowExperimentation = false;
@@ -53,7 +52,7 @@ public class KnowledgeMap implements Serializable{
 		return masterMap;
 	}
 	
-	public void learn(Board board, int value) {
+	public void add(Board board, int value) {
 		totalBoardStatesCounted++;
 		Percent p = knowledgeMap.get(board);
 		if(p == null) {
@@ -79,17 +78,6 @@ public class KnowledgeMap implements Serializable{
 		return percent;
 	}
 	
-	public Board getBestBoard(List<Board> boards) {
-		Board bestMove = null;
-		for(Board move : boards) {
-			double value = getValue(move);
-			if(bestMove == null || value > getValue(bestMove)) {
-				bestMove = move;
-			}
-		}
-		return bestMove;
-	}
-	
 	public static void save() {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(getPath());
@@ -99,7 +87,7 @@ public class KnowledgeMap implements Serializable{
 	         fileOut.close();
 		}
 		catch(IOException e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
@@ -111,8 +99,8 @@ public class KnowledgeMap implements Serializable{
 	        in.close();
 	        fileIn.close();
 	    }
-		catch(IOException | ClassNotFoundException i){
-			
+		catch(IOException | ClassNotFoundException e){
+			e.printStackTrace();
 	    }
 	}
 	

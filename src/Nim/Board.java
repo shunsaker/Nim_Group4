@@ -1,9 +1,9 @@
 package Nim;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class Board implements Serializable{
@@ -32,16 +32,8 @@ public class Board implements Serializable{
 		return rows[0] == 0 && rows[1] == 0 && rows[2]== 0;
 	}
 	
-	public List<Board> getAllMoves() {
-		List<Board> moves = new ArrayList<Board>();
-		for(int row = 0; row < ROWS; row++) {
-			int numInRow = rows[row];
-			for(int i = numInRow; i > 0; i--) {
-				Move move = new Move(row, i);
-				moves.add(makeMove(move));
-			}
-		}
-		return moves;
+	public Iterator<Board> getAllMoves() {
+		return new PossibleMovesIterator(this);
 	}
 	
 	@Override 

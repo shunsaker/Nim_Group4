@@ -24,18 +24,30 @@ public class Game {
 	public void play() {
 		boolean again;
 		do{
-			board = new Board();
-			playerOneBoards = new ArrayList<Board>();
-			playerTwoBoards = new ArrayList<Board>();
+			setUp();
 			Player winner = getWinner(board);
-			System.out.println(winner + " Is the winner!\n");
-			totalGamesPlayed++;
-			playerOneWins += (winner == playerOne ? 1 : 0);
+			endGame(winner);
 			again = (playerToAskAgain == 1 ? playerOne : playerTwo).playAgain();
 			learn(winner);
 		}
 		while(again);
 		KnowledgeMap.save();
+		displayWinStats();
+	}
+	
+	private void setUp() {
+		board = new Board();
+		playerOneBoards = new ArrayList<Board>();
+		playerTwoBoards = new ArrayList<Board>();
+	}
+	
+	private void endGame(Player winner) {
+		System.out.println(winner + " Is the winner!\n");
+		totalGamesPlayed++;
+		playerOneWins += (winner == playerOne ? 1 : 0);
+	}
+	
+	private void displayWinStats() {
 		System.out.println(playerOne.NAME + " won " + ((float)playerOneWins / totalGamesPlayed * 100) + "% of the games");
 		System.out.println("Press enter to continue");
 		scan.nextLine();
@@ -44,9 +56,9 @@ public class Game {
 	private Player getWinner(Board board) { // Plays the game
 		Player winner = null;
 		while(!board.isEndGame()) {
-			board = takeTurn(playerOne);
+			board = nextTurn(playerOne);
 			if(!board.isEndGame()) {
-				board = takeTurn(playerTwo);
+				board = nextTurn(playerTwo);
 			}
 			else {
 				winner = playerTwo;
@@ -55,7 +67,7 @@ public class Game {
 		return winner == null ? playerOne : winner;
 	}
 	
-	private Board takeTurn(Player player) {
+	private Board nextTurn(Player player) {
 		Move move = (player == playerOne ? playerOne : playerTwo).getMove(board);
 		board = board.makeMove(move);
 		(player == playerOne ? playerOneBoards : playerTwoBoards).add(board);
@@ -75,10 +87,10 @@ public class Game {
 		}
 		
 		for(Board board : winningBoards) {
-			KnowledgeMap.getInstance().learn(board, 1);
+			KnowledgeMap.getInstance().add(board, 1);
 		}
 		for(Board board : losingBoards) {
-			KnowledgeMap.getInstance().learn(board, 0);
+			KnowledgeMap.getInstance().add(board, 0);
 		}
 	}
 }
