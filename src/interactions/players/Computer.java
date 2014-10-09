@@ -22,7 +22,7 @@ public class Computer extends Player{
 	@Override
 	public Move getMove(Board board) {
 		KnowledgeMap map = KnowledgeMap.getInstance();
-		Board bestBoard = AIUtils.getBestBoard(board.getAllMoves(), map);
+		Board bestBoard = AIUtils.getBestBoard(board.getAllMoves());
 		List<Board> bestBoards = AIUtils.getBestBoards(map.getValue(bestBoard), board.getAllMoves());
 		int randIndex = (int) (Math.random() * bestBoards.size());
 		Board bestMove = bestBoards.get(randIndex);

@@ -8,7 +8,8 @@ import model.Board;
 import model.Move;
 
 public class AIUtils {
-	public static Board getBestBoard(Iterator<Board> boards, KnowledgeMap map) {
+	public static Board getBestBoard(Iterator<Board> boards) {
+		KnowledgeMap map = KnowledgeMap.getInstance();
 		Board bestMove = null;
 		while(boards.hasNext()) {
 			Board next = boards.next();
