@@ -22,7 +22,7 @@ public class Driver {
 					mainMenu.setAI();
 				}
 				else {
-					Player playerOne = (selection == 3 || selection == 4 ? (selection == 4 ? new Computer("Player1 (Computer)", mainMenu.getNumTimes()) : new Computer("Player1 (Computer)")) : new ConsoleHuman("Player1"));
+					Player playerOne = getPlayerOne(selection);
 					Player playerTwo = (selection == 1 || selection == 3 ? new ConsoleHuman("Player2") : new Computer("Player2 (Computer)"));
 					int playerToAsk = (selection == 3 ? 2 : 1);
 					Game game = new Game(playerOne, playerTwo, playerToAsk);
@@ -32,5 +32,19 @@ public class Driver {
 		}
 		while(selection != 0);
 		System.out.println("Thanks for playing!");
+	}
+	
+	private Player getPlayerOne(int menuSelection) {
+		Player p;
+		if(menuSelection == 3) {
+			p = new Computer("Player1 (Computer)");
+		}
+		else if (menuSelection == 4) {
+			p = new Computer("Player1 (Computer)", mainMenu.getNumTimes());
+		}
+		else {
+			p = new ConsoleHuman("Player1");
+		}
+		return p;
 	}
 }

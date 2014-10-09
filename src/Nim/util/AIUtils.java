@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.Board;
-import model.KnowledgeMap;
 import model.Move;
 
 public class AIUtils {

@@ -1,4 +1,4 @@
-package model;
+package Nim.util;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import model.Board;
+import model.Percent;
 
 public class KnowledgeMap implements Serializable{
 	private static final String SAVE_PATH = "/knowledgeMap.ser";

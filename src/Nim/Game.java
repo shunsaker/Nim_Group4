@@ -6,8 +6,8 @@ import interactions.players.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+import Nim.util.KnowledgeMap;
 import model.Board;
-import model.KnowledgeMap;
 import model.Move;
 
 public class Game {

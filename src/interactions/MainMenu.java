@@ -2,7 +2,7 @@ package interactions;
 
 import java.util.Scanner;
 
-import model.KnowledgeMap;
+import Nim.util.KnowledgeMap;
 
 public class MainMenu {
 	private final int OPTIONS = 5;
