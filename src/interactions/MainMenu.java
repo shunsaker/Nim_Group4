@@ -1,6 +1,8 @@
-package Nim;
+package interactions;
 
 import java.util.Scanner;
+
+import model.KnowledgeMap;
 
 public class MainMenu {
 	private final int OPTIONS = 5;

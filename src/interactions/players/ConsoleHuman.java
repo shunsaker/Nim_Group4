@@ -1,6 +1,9 @@
-package Nim;
+package interactions.players;
 
 import java.util.Scanner;
+
+import model.Board;
+import model.Move;
 
 public class ConsoleHuman extends Player{
 	private Scanner scan = new Scanner(System.in);

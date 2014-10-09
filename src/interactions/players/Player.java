@@ -1,4 +1,7 @@
-package Nim;
+package interactions.players;
+
+import model.Board;
+import model.Move;
 
 public abstract class Player {
 public final String NAME;
@@ -12,6 +15,6 @@ public final String NAME;
 		return NAME;
 	}
 	
-	abstract Move getMove(Board board);
-	abstract boolean playAgain();
+	abstract public Move getMove(Board board);
+	abstract public boolean playAgain();
 }

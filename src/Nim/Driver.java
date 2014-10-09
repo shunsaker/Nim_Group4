@@ -1,5 +1,10 @@
 package Nim;
 
+import interactions.MainMenu;
+import interactions.players.Computer;
+import interactions.players.ConsoleHuman;
+import interactions.players.Player;
+
 public class Driver {
 	private static MainMenu mainMenu = new MainMenu();
 	

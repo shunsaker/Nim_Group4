@@ -1,6 +1,9 @@
-package Nim;
+package Nim.util;
 
 import java.util.Iterator;
+
+import model.Board;
+import model.Move;
 
 public class PossibleMovesIterator implements Iterator<Board>{
 	private Board board;

@@ -1,4 +1,4 @@
-package Nim;
+package model;
 
 public class Move {
 	public final int ROW, REMOVE;

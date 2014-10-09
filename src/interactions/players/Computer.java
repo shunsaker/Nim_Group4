@@ -1,6 +1,11 @@
-package Nim;
+package interactions.players;
 
 import java.util.List;
+
+import model.Board;
+import model.KnowledgeMap;
+import model.Move;
+import Nim.util.AIUtils;
 
 public class Computer extends Player{
 	private int playTimes = 0;

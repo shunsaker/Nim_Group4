@@ -1,4 +1,4 @@
-package Nim;
+package model;
 
 import java.io.Serializable;
 

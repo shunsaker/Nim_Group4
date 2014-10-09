@@ -1,11 +1,16 @@
 package Nim;
 
+import interactions.ConsoleDisplay;
+import interactions.players.Player;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
+import model.Board;
+import model.KnowledgeMap;
+import model.Move;
 
 public class Game {
-	private Scanner scan = new Scanner(System.in);
 	private Player playerOne, playerTwo;
 	private Board board;
 	private List<Board> playerOneBoards, playerTwoBoards;
@@ -42,15 +47,14 @@ public class Game {
 	}
 	
 	private void endGame(Player winner) {
-		System.out.println(winner + " Is the winner!\n");
+		ConsoleDisplay.printString(winner + " Is the winner!\n");
 		totalGamesPlayed++;
 		playerOneWins += (winner == playerOne ? 1 : 0);
 	}
 	
 	private void displayWinStats() {
-		System.out.println(playerOne.NAME + " won " + ((float)playerOneWins / totalGamesPlayed * 100) + "% of the games");
-		System.out.println("Press enter to continue");
-		scan.nextLine();
+		ConsoleDisplay.printString(playerOne.NAME + " won " + ((float)playerOneWins / totalGamesPlayed * 100) + "% of the games");
+		ConsoleDisplay.delay();
 	}
 	
 	private Player getWinner(Board board) { // Plays the game
