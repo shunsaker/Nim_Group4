@@ -62,11 +62,11 @@ public class Game {
 		Player winner = null;
 		while(!board.isEndGame()) {
 			board = nextTurn(playerOne.NAME);
-			if(!board.isEndGame()) {
-				board = nextTurn(playerTwo.NAME);
+			if(board.isEndGame()) {
+				winner = playerTwo;
 			}
 			else {
-				winner = playerTwo;
+				board = nextTurn(playerTwo.NAME);
 			}
 		}
 		return winner == null ? playerOne : winner;
