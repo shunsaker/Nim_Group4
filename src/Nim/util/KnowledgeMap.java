@@ -56,6 +56,7 @@ public class KnowledgeMap implements Serializable{
 	}
 	
 	public void add(Board board, int value) {
+		assert(board != null);
 		totalBoardStatesCounted++;
 		Percent p = knowledgeMap.get(board);
 		if(p == null) {

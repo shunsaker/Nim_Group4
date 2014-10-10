@@ -18,6 +18,7 @@ public class Game {
 	private int playerOneWins = 0, totalGamesPlayed = 0;
 	
 	public Game(Player playerOne, Player playerTwo, int playerToAskAgain) {
+		assert(playerOne != null && playerTwo != null);
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
 		this.playerToAskAgain = playerToAskAgain;
@@ -31,9 +32,9 @@ public class Game {
 		do{
 			setUp();
 			Player winner = getWinner(board);
-			endGame(winner);
+			endGame(winner.NAME);
 			again = (playerToAskAgain == 1 ? playerOne : playerTwo).playAgain();
-			learn(winner);
+			learn(winner.NAME);
 		}
 		while(again);
 		KnowledgeMap.save();
@@ -46,10 +47,10 @@ public class Game {
 		playerTwoBoards = new ArrayList<Board>();
 	}
 	
-	private void endGame(Player winner) {
-		ConsoleDisplay.printString(winner + " Is the winner!\n");
+	private void endGame(String winnerName) {
+		ConsoleDisplay.printString(winnerName + " Is the winner!\n");
 		totalGamesPlayed++;
-		playerOneWins += (winner == playerOne ? 1 : 0);
+		playerOneWins += (winnerName.equals(playerOne.NAME) ? 1 : 0);
 	}
 	
 	private void displayWinStats() {
@@ -60,9 +61,9 @@ public class Game {
 	private Player getWinner(Board board) { // Plays the game
 		Player winner = null;
 		while(!board.isEndGame()) {
-			board = nextTurn(playerOne);
+			board = nextTurn(playerOne.NAME);
 			if(!board.isEndGame()) {
-				board = nextTurn(playerTwo);
+				board = nextTurn(playerTwo.NAME);
 			}
 			else {
 				winner = playerTwo;
@@ -71,17 +72,18 @@ public class Game {
 		return winner == null ? playerOne : winner;
 	}
 	
-	private Board nextTurn(Player player) {
-		Move move = (player == playerOne ? playerOne : playerTwo).getMove(board);
+	private Board nextTurn(String playerName) {
+		boolean isPlayerOne = playerName.equals(playerOne.NAME);
+		Move move = (isPlayerOne ? playerOne : playerTwo).getMove(board);
 		board = board.makeMove(move);
-		(player == playerOne ? playerOneBoards : playerTwoBoards).add(board);
+		(isPlayerOne ? playerOneBoards : playerTwoBoards).add(board);
 		return board;
 	}
 	
-	private void learn(Player winner) {
+	private void learn(String winnerName) {
 		List<Board> winningBoards, losingBoards;
 		
-		if(winner == playerOne) {
+		if(winnerName.equals(playerOne.NAME)) {
 			winningBoards = playerOneBoards;
 			losingBoards = playerTwoBoards;
 		}
