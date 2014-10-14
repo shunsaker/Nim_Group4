@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import Nim.Game;
 import model.Board;
 import model.Percent;
 
@@ -60,7 +61,7 @@ public class KnowledgeMap implements Serializable{
 		totalBoardStatesCounted++;
 		Percent p = knowledgeMap.get(board);
 		if(p == null) {
-			p = new Percent(value, 1);
+			p = new Percent(value, Game.WIN_INCREMENT);
 			knowledgeMap.put(board, p);
 		}
 		else {
@@ -75,7 +76,7 @@ public class KnowledgeMap implements Serializable{
 	
 	public double getValue(Board board) {
 		Percent p = knowledgeMap.get(board);
-		double percent = 1.1;
+		double percent = Game.WIN_INCREMENT + .1;
 		if(p != null && (allowExperimentation ? (double) p.getTotal() / totalBoardStatesCounted > LOW_PERCENT_THRESHOLD : true)) {
 			percent = p.getPercent();
 		}

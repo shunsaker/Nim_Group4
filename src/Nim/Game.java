@@ -11,6 +11,7 @@ import model.Board;
 import model.Move;
 
 public class Game {
+	public static final int WIN_INCREMENT = 1, LOSS_INCREMENT = 0;
 	private Player playerOne, playerTwo;
 	private Board board;
 	private List<Board> playerOneBoards, playerTwoBoards;
@@ -50,7 +51,7 @@ public class Game {
 	private void endGame(String winnerName) {
 		ConsoleDisplay.printString(winnerName + " Is the winner!\n");
 		totalGamesPlayed++;
-		playerOneWins += (winnerName.equals(playerOne.NAME) ? 1 : 0);
+		playerOneWins += (winnerName.equals(playerOne.NAME) ? WIN_INCREMENT : LOSS_INCREMENT);
 	}
 	
 	private void displayWinStats() {
@@ -93,10 +94,10 @@ public class Game {
 		}
 		
 		for(Board board : winningBoards) {
-			KnowledgeMap.getInstance().add(board, 1);
+			KnowledgeMap.getInstance().add(board, WIN_INCREMENT);
 		}
 		for(Board board : losingBoards) {
-			KnowledgeMap.getInstance().add(board, 0);
+			KnowledgeMap.getInstance().add(board, LOSS_INCREMENT);
 		}
 	}
 }

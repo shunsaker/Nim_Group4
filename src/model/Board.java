@@ -34,6 +34,14 @@ public class Board implements Serializable{
 		return rows[0] == 0 && rows[1] == 0 && rows[2]== 0;
 	}
 	
+	public boolean isRowValid(int row) {
+		return 0 <= row && row < ROWS;
+	}
+	
+	public boolean isRemoveValid(int row, int remove) {
+		return remove > 0 && getRow(row) >= remove;
+	}
+	
 	public Iterator<Board> getAllMoves() {
 		return new PossibleMovesIterator(this);
 	}

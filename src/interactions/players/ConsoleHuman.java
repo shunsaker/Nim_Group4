@@ -35,7 +35,7 @@ public class ConsoleHuman extends Player{
 			System.out.println("What row to remove from?");
 			try {
 				row = Integer.parseInt(scan.nextLine()) - 1;
-				if(0 <= row && row < Board.ROWS){
+				if(board.isRowValid(row)){
 					if(board.getRow(row) > 0) {
 						valid = true;
 					}
@@ -61,7 +61,7 @@ public class ConsoleHuman extends Player{
 			System.out.println("How many would you like to remove?");
 			try {
 				remove = Integer.parseInt(scan.nextLine());
-				if(remove > 0 && board.getRow(row) >= remove){
+				if(board.isRemoveValid(row, remove)){
 					valid = true;
 				}
 				else {
